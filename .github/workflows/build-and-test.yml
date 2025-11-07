@@ -1,0 +1,49 @@
+name: Build and Test
+
+on:
+  push:
+    branches: [ main, master, claude/** ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  build-and-test:
+    name: Build and Test
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '8.0.x'
+
+    - name: Display .NET info
+      run: dotnet --info
+
+    - name: Restore dependencies
+      run: dotnet restore Assistant.sln
+
+    - name: Build solution
+      run: dotnet build Assistant.sln --configuration Release --no-restore
+
+    - name: Run Agent.Core.Tests
+      run: dotnet test src/Agent.Core.Tests/Agent.Core.Tests.fsproj --configuration Release --no-build --verbosity normal --logger "console;verbosity=detailed"
+
+    - name: Run Agent.Storage.Tests
+      run: dotnet test src/Agent.Storage.Tests/Agent.Storage.Tests.fsproj --configuration Release --no-build --verbosity normal --logger "console;verbosity=detailed"
+
+    - name: Run Agent.Executor.Tests
+      run: dotnet test src/Agent.Executor.Tests/Agent.Executor.Tests.fsproj --configuration Release --no-build --verbosity normal --logger "console;verbosity=detailed"
+
+    - name: Run Agent.Web.Tests
+      run: dotnet test src/Agent.Web.Tests/Agent.Web.Tests.fsproj --configuration Release --no-build --verbosity normal --logger "console;verbosity=detailed"
+
+    - name: Test Summary
+      if: always()
+      run: |
+        echo "========================================="
+        echo "Test Execution Complete"
+        echo "========================================="

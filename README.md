@@ -1,5 +1,7 @@
 # F# Assistant Agent
 
+[![Build and Test](https://github.com/ulucs/assistant/actions/workflows/build-and-test.yml/badge.svg)](https://github.com/ulucs/assistant/actions/workflows/build-and-test.yml)
+
 A human-in-the-loop AI assistant agent built with F#, featuring:
 - Multi-source input (Web UI, Email)
 - LLM-powered command generation via LiteLLM
@@ -48,6 +50,7 @@ A human-in-the-loop AI assistant agent built with F#, featuring:
 - **Backend**: Giraffe (F# web framework on ASP.NET Core)
 - **Frontend**: Elmish + Feliz (functional reactive UI)
 - **Build**: Nix Flakes
+- **CI/CD**: GitHub Actions
 
 ## Prerequisites
 
@@ -334,6 +337,53 @@ let myTests =
         }
     ]
 ```
+
+## Continuous Integration
+
+The project uses GitHub Actions for automated building and testing.
+
+### Workflows
+
+**Build and Test** (`.github/workflows/build-and-test.yml`)
+- Triggers on push to `main`, `master`, and `claude/**` branches
+- Triggers on pull requests to `main` and `master`
+- Runs on Ubuntu with .NET 8
+- Steps:
+  1. Checkout code
+  2. Setup .NET environment
+  3. Restore dependencies
+  4. Build solution in Release mode
+  5. Run all test projects with detailed output
+
+### Viewing CI Results
+
+Check the Actions tab in GitHub to see workflow runs:
+```
+https://github.com/ulucs/assistant/actions
+```
+
+### Running CI Locally
+
+To replicate the CI environment locally:
+
+```bash
+# Restore and build
+dotnet restore Assistant.sln
+dotnet build Assistant.sln --configuration Release
+
+# Run all tests
+dotnet test src/Agent.Core.Tests/Agent.Core.Tests.fsproj --configuration Release
+dotnet test src/Agent.Storage.Tests/Agent.Storage.Tests.fsproj --configuration Release
+dotnet test src/Agent.Executor.Tests/Agent.Executor.Tests.fsproj --configuration Release
+dotnet test src/Agent.Web.Tests/Agent.Web.Tests.fsproj --configuration Release
+
+# Or use the test runner script
+./run-tests.sh
+```
+
+### CI Status Badge
+
+The build status badge at the top of this README shows the current state of the main branch.
 
 ## Security
 
