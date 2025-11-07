@@ -12,6 +12,14 @@ Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Agent.Web", "src\Agent.Web\
 EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Agent.UI", "src\Agent.UI\Agent.UI.fsproj", "{A5555555-5555-5555-5555-555555555555}"
 EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Agent.Core.Tests", "src\Agent.Core.Tests\Agent.Core.Tests.fsproj", "{B1111111-1111-1111-1111-111111111111}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Agent.Storage.Tests", "src\Agent.Storage.Tests\Agent.Storage.Tests.fsproj", "{B2222222-2222-2222-2222-222222222222}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Agent.Executor.Tests", "src\Agent.Executor.Tests\Agent.Executor.Tests.fsproj", "{B3333333-3333-3333-3333-333333333333}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Agent.Web.Tests", "src\Agent.Web.Tests\Agent.Web.Tests.fsproj", "{B4444444-4444-4444-4444-444444444444}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -38,5 +46,21 @@ Global
 		{A5555555-5555-5555-5555-555555555555}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A5555555-5555-5555-5555-555555555555}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A5555555-5555-5555-5555-555555555555}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B1111111-1111-1111-1111-111111111111}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1111111-1111-1111-1111-111111111111}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1111111-1111-1111-1111-111111111111}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1111111-1111-1111-1111-111111111111}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B2222222-2222-2222-2222-222222222222}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2222222-2222-2222-2222-222222222222}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2222222-2222-2222-2222-222222222222}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2222222-2222-2222-2222-222222222222}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3333333-3333-3333-3333-333333333333}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3333333-3333-3333-3333-333333333333}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3333333-3333-3333-3333-333333333333}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3333333-3333-3333-3333-333333333333}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B4444444-4444-4444-4444-444444444444}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B4444444-4444-4444-4444-444444444444}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B4444444-4444-4444-4444-444444444444}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B4444444-4444-4444-4444-444444444444}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

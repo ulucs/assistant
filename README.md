@@ -150,11 +150,16 @@ Whitelisted commands still require approval but are marked for quick review.
 assistant/
 ├── flake.nix                    # Nix flake configuration
 ├── Assistant.sln                # F# solution
+├── run-tests.sh                 # Test runner script
 ├── src/
 │   ├── Agent.Core/              # Domain models, LLM client, agent logic
+│   ├── Agent.Core.Tests/        # Core unit tests
 │   ├── Agent.Storage/           # SQLite storage layer
+│   ├── Agent.Storage.Tests/     # Storage integration tests
 │   ├── Agent.Executor/          # Command execution & whitelist
+│   ├── Agent.Executor.Tests/    # Executor unit tests
 │   ├── Agent.Web/               # Giraffe web API + entry point
+│   ├── Agent.Web.Tests/         # API integration tests
 │   └── Agent.UI/                # Elmish frontend
 ├── litellm/
 │   ├── config.yaml              # LiteLLM configuration
@@ -230,6 +235,104 @@ npm run build
 ```bash
 rm data/assistant.db
 # Restart the backend to recreate
+```
+
+## Testing
+
+The project includes comprehensive test coverage with Expecto test framework.
+
+### Test Projects
+
+- **Agent.Core.Tests** - Domain models, LLM parsing, agent logic
+- **Agent.Storage.Tests** - Database operations and queries
+- **Agent.Executor.Tests** - Whitelist validation and command execution
+- **Agent.Web.Tests** - API integration tests
+
+### Running Tests
+
+Run all tests:
+
+```bash
+./run-tests.sh
+```
+
+Or run individual test projects:
+
+```bash
+# Core tests
+dotnet test src/Agent.Core.Tests
+
+# Storage tests
+dotnet test src/Agent.Storage.Tests
+
+# Executor tests
+dotnet test src/Agent.Executor.Tests
+
+# Web API tests
+dotnet test src/Agent.Web.Tests
+```
+
+Run tests with verbose output:
+
+```bash
+dotnet test --logger "console;verbosity=detailed"
+```
+
+### Test Coverage
+
+**Domain Tests:**
+- Input/Command/ExecutionResult creation
+- Status transitions
+- Helper functions
+
+**LLM Tests:**
+- JSON parsing
+- Command extraction
+- Error handling
+
+**Whitelist Tests:**
+- Read-only command detection
+- Dangerous pattern detection (rm -rf, sudo, etc.)
+- Command validation
+
+**Storage Tests:**
+- Database migrations
+- CRUD operations
+- Query filtering
+- Status parsing
+
+**Executor Tests:**
+- Command execution
+- Output capture
+- Timeout handling
+- Error propagation
+
+**API Tests:**
+- Request/response handling
+- Command approval workflow
+- Status transitions
+- Database integration
+
+### Writing New Tests
+
+Example test with Expecto:
+
+```fsharp
+open Expecto
+
+[<Tests>]
+let myTests =
+    testList "My Feature" [
+        test "should do something" {
+            let result = doSomething()
+            Expect.equal result expected "Should match expected"
+        }
+
+        testAsync "should handle async" {
+            let! result = doSomethingAsync()
+            Expect.isTrue result "Should be true"
+        }
+    ]
 ```
 
 ## Security
