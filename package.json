@@ -1,0 +1,22 @@
+{
+  "name": "assistant-agent",
+  "version": "0.1.0",
+  "description": "F# Assistant Agent with Elmish UI",
+  "scripts": {
+    "build": "webpack --mode production",
+    "start": "webpack serve --mode development",
+    "watch": "webpack --mode development --watch"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.23.0",
+    "fable-compiler": "^4.9.0",
+    "fable-loader": "^2.1.9",
+    "webpack": "^5.89.0",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^4.15.1"
+  }
+}

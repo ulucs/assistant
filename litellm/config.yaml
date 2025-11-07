@@ -1,0 +1,28 @@
+model_list:
+  - model_name: gpt-4
+    litellm_params:
+      model: gpt-4
+      api_key: os.environ/OPENAI_API_KEY
+
+  - model_name: claude-3-sonnet
+    litellm_params:
+      model: claude-3-sonnet-20240229
+      api_key: os.environ/ANTHROPIC_API_KEY
+
+  - model_name: claude-3-opus
+    litellm_params:
+      model: claude-3-opus-20240229
+      api_key: os.environ/ANTHROPIC_API_KEY
+
+# Server configuration
+litellm_settings:
+  drop_params: true
+  set_verbose: true
+
+# General settings
+general_settings:
+  master_key: "sk-1234" # Change this in production
+
+server:
+  host: 0.0.0.0
+  port: 4000
